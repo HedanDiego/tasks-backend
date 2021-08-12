@@ -19,8 +19,10 @@ pipeline {
         }
         stage ('API Test') {
             steps {
-                git 'https://github.com/HedanDiego/task-api-test'
-                bat 'mvn test'
+                dir ('api-test'){
+                    git 'https://github.com/HedanDiego/task-api-test'
+                    bat 'mvn test'
+                }
             }
         }
     }
