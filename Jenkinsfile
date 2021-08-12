@@ -25,6 +25,15 @@ pipeline {
                 }
             }
         }
+        stage ('Deploy Frontend') {
+            steps {
+                dir ('frontend'){
+                    git 'https://github.com/HedanDiego/tasks-frontend'
+                    bat 'mvn clean package -DskipTests=True'
+                    deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+                }
+            }
+        }
     }
 }
 
