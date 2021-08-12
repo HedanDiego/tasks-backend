@@ -34,6 +34,14 @@ pipeline {
                 }
             }
         }
+        stage ('Functional Test') {
+            steps {
+                dir ('functional-test'){
+                    git 'https://github.com/HedanDiego/tasks-functional-test'
+                    bat 'mvn test'
+                }
+            }
+        }
     }
 }
 
